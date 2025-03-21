@@ -10,6 +10,8 @@ public class MovimientoJugador : MonoBehaviour
     private float x, y;
     private Rigidbody rb;
     public bool canJump;
+    private float initialSpeed;
+    private float crouchSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -17,6 +19,9 @@ public class MovimientoJugador : MonoBehaviour
         canJump = false;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+
+        initialSpeed = movementSpeed;
+        crouchSpeed = movementSpeed * 0.5f;
     }
 
     // Update is called once per frame
@@ -37,6 +42,17 @@ public class MovimientoJugador : MonoBehaviour
                 anim.SetBool("EstoySaltando", true);
                 rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
             }
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                anim.SetBool("Agachado", true);
+                movementSpeed = crouchSpeed;
+                
+            } else {
+                anim.SetBool("Agachado", false);
+                movementSpeed = initialSpeed;
+            }
+
             anim.SetBool("TocarSuelo", true);
 
         } else {
