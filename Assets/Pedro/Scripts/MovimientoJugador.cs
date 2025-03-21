@@ -5,6 +5,7 @@ public class MovimientoJugador : MonoBehaviour
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float jumpForce;
+    [SerializeField] private float gravityExtra;
     private Animator anim;
     private float x, y;
     private Rigidbody rb;
@@ -46,6 +47,8 @@ public class MovimientoJugador : MonoBehaviour
 
     private void Falling()
     {
+        // Hacemos que nuestro personaje caiga más rápido
+        rb.AddForce(gravityExtra * Physics.gravity);
         anim.SetBool("TocarSuelo", false);
         anim.SetBool("EstoySaltando", false);
 
