@@ -6,6 +6,11 @@ public class MovimientoJugador : MonoBehaviour
     [SerializeField] private float rotationSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravityExtra;
+    [SerializeField] private CapsuleCollider colliderEnPie;
+    [SerializeField] private CapsuleCollider colliderAgachado;
+    [SerializeField] private GameObject head;
+    [SerializeField] private CabezaPersonaje cabezaPersonaje;
+    private bool estoyAgachado;
     private Animator anim;
     private float x, y;
     private Rigidbody rb;
@@ -47,10 +52,32 @@ public class MovimientoJugador : MonoBehaviour
             {
                 anim.SetBool("Agachado", true);
                 movementSpeed = crouchSpeed;
+
+                // Cambio de collider
+                colliderAgachado.enabled = true;
+                colliderEnPie.enabled = false;
+
+                head.SetActive(true);
+                estoyAgachado = true;
                 
             } else {
-                anim.SetBool("Agachado", false);
-                movementSpeed = initialSpeed;
+
+                if (cabezaPersonaje.collisionCount <= 0)
+                {
+                    anim.SetBool("Agachado", false);
+                    movementSpeed = initialSpeed;
+
+                    // Cambio de collider
+                    head.SetActive(false);
+                    colliderAgachado.enabled = false;
+                    colliderEnPie.enabled = true;
+                    estoyAgachado = false;
+
+                }
+
+
+
+                
             }
 
             anim.SetBool("TocarSuelo", true);
