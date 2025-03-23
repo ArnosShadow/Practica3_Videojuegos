@@ -17,6 +17,9 @@ public class MovimientoJugador : MonoBehaviour
     public bool canJump;
     private float initialSpeed;
     private float crouchSpeed;
+    private bool atacando;
+    private bool avanzoAtaque;
+    private float impulsoGolpe = 2f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -40,44 +43,50 @@ public class MovimientoJugador : MonoBehaviour
         anim.SetFloat("VelocidadX", x);
         anim.SetFloat("VelocidadY", y);
 
+        if (Input.GetKey(KeyCode.E) && canJump && !atacando)
+        {
+            anim.SetTrigger("Golpeo");
+            atacando = true;
+        }
+
         if (canJump)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (!atacando)
             {
-                anim.SetBool("EstoySaltando", true);
-                rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
-            }
-
-            if (Input.GetKey(KeyCode.LeftControl))
-            {
-                anim.SetBool("Agachado", true);
-                movementSpeed = crouchSpeed;
-
-                // Cambio de collider
-                colliderAgachado.enabled = true;
-                colliderEnPie.enabled = false;
-
-                head.SetActive(true);
-                estoyAgachado = true;
-                
-            } else {
-
-                if (cabezaPersonaje.collisionCount <= 0)
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    anim.SetBool("Agachado", false);
-                    movementSpeed = initialSpeed;
-
-                    // Cambio de collider
-                    head.SetActive(false);
-                    colliderAgachado.enabled = false;
-                    colliderEnPie.enabled = true;
-                    estoyAgachado = false;
-
+                    anim.SetBool("EstoySaltando", true);
+                    rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
                 }
 
+                if (Input.GetKey(KeyCode.LeftControl))
+                {
+                    anim.SetBool("Agachado", true);
+                    movementSpeed = crouchSpeed;
 
+                    // Cambio de collider
+                    colliderAgachado.enabled = true;
+                    colliderEnPie.enabled = false;
 
-                
+                    head.SetActive(true);
+                    estoyAgachado = true;
+                    
+                } else {
+
+                    if (cabezaPersonaje.collisionCount <= 0)
+                    {
+                        anim.SetBool("Agachado", false);
+                        movementSpeed = initialSpeed;
+
+                        // Cambio de collider
+                        head.SetActive(false);
+                        colliderAgachado.enabled = false;
+                        colliderEnPie.enabled = true;
+                        estoyAgachado = false;
+
+                    }
+
+                }
             }
 
             anim.SetBool("TocarSuelo", true);
@@ -88,6 +97,20 @@ public class MovimientoJugador : MonoBehaviour
 
     }
 
+    private void FixedUpdate()
+    {    
+        if (!atacando)
+        {
+            // Funciones para el movimeinto del jugador
+            transform.Rotate(0, x * rotationSpeed * Time.deltaTime, 0);
+            transform.Translate(0, 0, y * movementSpeed * Time.deltaTime);
+        } 
+
+        if (avanzoAtaque)
+        {
+            rb.linearVelocity = transform.forward * impulsoGolpe;
+        }
+    }  
     private void Falling()
     {
         // Hacemos que nuestro personaje caiga más rápido
@@ -97,10 +120,18 @@ public class MovimientoJugador : MonoBehaviour
 
     }
 
-    private void FixedUpdate()
-    {     
-        // Funciones para el movimeinto del jugador
-        transform.Rotate(0, x * rotationSpeed * Time.deltaTime, 0);
-        transform.Translate(0, 0, y * movementSpeed * Time.deltaTime);
+    private void FinAtaque()
+    {
+        atacando = false;
+    }
+
+    private void AvanzoAtaque()
+    {
+        avanzoAtaque = true;
+    }
+
+    private void DejoDeAvanzar()
+    {
+        avanzoAtaque = false;
     }
 }
