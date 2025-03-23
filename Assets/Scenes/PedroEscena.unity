@@ -3103,6 +3103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementSpeed: 5
   rotationSpeed: 250
+  sprintSpeed: 8
   jumpForce: 15
   gravityExtra: 1
   colliderEnPie: {fileID: 6886455763942816362}

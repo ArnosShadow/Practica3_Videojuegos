@@ -1,9 +1,11 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class MovimientoJugador : MonoBehaviour
 {
     [SerializeField] private float movementSpeed;
     [SerializeField] private float rotationSpeed;
+    [SerializeField] private float sprintSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravityExtra;
     [SerializeField] private CapsuleCollider colliderEnPie;
@@ -20,6 +22,7 @@ public class MovimientoJugador : MonoBehaviour
     private bool atacando;
     private bool avanzoAtaque;
     private float impulsoGolpe = 2f;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,7 +46,27 @@ public class MovimientoJugador : MonoBehaviour
         anim.SetFloat("VelocidadX", x);
         anim.SetFloat("VelocidadY", y);
 
-        if (Input.GetKey(KeyCode.E) && canJump && !atacando)
+        if (Input.GetKey(KeyCode.LeftShift) && !estoyAgachado && canJump && !atacando)
+        {
+            movementSpeed = sprintSpeed;
+            if (y > 0)
+            {
+                anim.SetBool("Sprint", true);
+            } else {
+                anim.SetBool("Sprint", false);
+            }
+        } else {
+            anim.SetBool("Sprint", false);
+
+            if (estoyAgachado)
+            {
+                movementSpeed = crouchSpeed;
+            } else if (canJump) {
+                movementSpeed = initialSpeed;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.E) && canJump && !atacando)
         {
             anim.SetTrigger("Golpeo");
             atacando = true;
@@ -62,7 +85,7 @@ public class MovimientoJugador : MonoBehaviour
                 if (Input.GetKey(KeyCode.LeftControl))
                 {
                     anim.SetBool("Agachado", true);
-                    movementSpeed = crouchSpeed;
+                    // movementSpeed = crouchSpeed;
 
                     // Cambio de collider
                     colliderAgachado.enabled = true;
@@ -76,7 +99,7 @@ public class MovimientoJugador : MonoBehaviour
                     if (cabezaPersonaje.collisionCount <= 0)
                     {
                         anim.SetBool("Agachado", false);
-                        movementSpeed = initialSpeed;
+                        // movementSpeed = initialSpeed;
 
                         // Cambio de collider
                         head.SetActive(false);
