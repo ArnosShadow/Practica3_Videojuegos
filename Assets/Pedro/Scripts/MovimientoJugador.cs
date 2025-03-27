@@ -23,10 +23,12 @@ public class MovimientoJugador : MonoBehaviour
     [SerializeField] private GameObject head;
     [SerializeField] private CabezaPersonaje cabezaPersonaje;
     [SerializeField] private BoxCollider rightHand;
+    [SerializeField] private BoxCollider[] armasCollider;
     
     [Header("Configuración de Ataque")]
     private bool atacando;
     private bool avanzoAtaque;
+    public bool conArma;
     private float impulsoGolpe = 2f;
     
     // Variables internas de estado
@@ -107,8 +109,14 @@ public class MovimientoJugador : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && canJump && !atacando)
         {
-            anim.SetTrigger("Golpeo");
-            atacando = true;
+            if (conArma)
+            {
+                anim.SetTrigger("GolpeoArma");
+                atacando = true;
+            } else {
+                anim.SetTrigger("Golpeo");
+                atacando = true;
+            }
         }
     }
 
@@ -192,7 +200,16 @@ public class MovimientoJugador : MonoBehaviour
     private void AvanzoAtaque()
     {
         avanzoAtaque = true;
-        rightHand.enabled = true;
+
+        for (int i = 0; i < armasCollider.Length; i++)
+        {
+            if (conArma)
+            {
+                armasCollider[i].enabled = true;
+            } else {
+                rightHand.enabled = true;
+            }
+        }
     }
 
     /// <summary>
@@ -201,6 +218,12 @@ public class MovimientoJugador : MonoBehaviour
     private void DejoDeAvanzar()
     {
         avanzoAtaque = false;
+        rightHand.enabled = false;
+
+        for (int i = 0; i < armasCollider.Length; i++)
+        {
+            armasCollider[i].enabled = false;
+        }
         rightHand.enabled = false;
     }
 }
