@@ -31,8 +31,23 @@ public class MapaManager : MonoBehaviour
         GenerarMapa();
         GenerarParedes();
         GenerarPasillo();
+        GenerarZonasSecundarias();
         InstanciarMapa();
 
+    }
+
+    private void GenerarZonasSecundarias()
+    {
+        for (int x = 1; x < ancho - 1; x++)
+        {
+            for (int y = 1; y < alto - 1; y++)
+            {
+                if (mapa[x][y] == paredPrefab && Random.value < 0.5f && (mapa[x+1][y] == sueloPrefab || mapa[x - 1][y] == sueloPrefab || mapa[x][y+1] == sueloPrefab || mapa[x][y-1] == sueloPrefab))
+                {
+                    mapa[x][y] = sueloPrefab;
+                }
+            }
+        }
     }
 
     private void GenerarPasillo()
@@ -47,9 +62,7 @@ public class MapaManager : MonoBehaviour
         }
 
         mapa[x][y] = salidaPrefab;
-            
-            
-
+         
     }
 
     void GenerarMapa() {
