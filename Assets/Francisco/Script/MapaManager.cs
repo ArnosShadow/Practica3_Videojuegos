@@ -1,5 +1,6 @@
 using System;
 using System.Security.Cryptography;
+using Unity.AI.Navigation;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -15,25 +16,45 @@ public class MapaManager : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject salidaPrefab;
     [SerializeField] private GameObject entradaPrefab;
+    [Header("Navegador")]
+    [SerializeField] private NavMeshSurface navMeshSurface;
 
 
     private GameObject[][] mapa;
-
+    private void Awake()
+    {
+        mapa = new GameObject[ancho][];
+        for (int x = 0; x < ancho; x++)
+            mapa[x] = new GameObject[alto];
+    }
     public MapaManager(GameObject[][] mapa)
     {
         this.mapa = mapa;
     }
 
     void Start() {
-        mapa = new GameObject[ancho][];
-        for (int x = 0; x < ancho; x++)
-            mapa[x] = new GameObject[alto];
         GenerarMapa();
         GenerarParedes();
         GenerarPasillo();
         GenerarZonasSecundarias();
+        GenerarTrampasYEnemigos();
         InstanciarMapa();
+        navMeshSurface.BuildNavMesh();
+    }
 
+    private void GenerarTrampasYEnemigos()
+    {
+        for (int x = 1; x < ancho - 1; x++)
+        {
+            for (int y = 1; y < alto - 1; y++)
+            {
+                if (mapa[x][ y] == sueloPrefab && Random.value < 0.05f)
+                    Instantiate(trampaPrefab, new Vector3(x, 0.5f, y), Quaternion.identity);
+
+                if (mapa[x][ y] == sueloPrefab && Random.value < 0.05f)
+                    Instantiate(enemyPrefab, new Vector3(x, 0.5f, y), Quaternion.identity);
+            }
+        }
     }
 
     private void GenerarZonasSecundarias()
