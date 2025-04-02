@@ -30,10 +30,27 @@ public class MapaManager : MonoBehaviour
             mapa[x] = new GameObject[alto];
         GenerarMapa();
         GenerarParedes();
+        GenerarPasillo();
         InstanciarMapa();
 
     }
 
+    private void GenerarPasillo()
+    {
+        int x = 1, y = 1;
+        mapa[x][y] = entradaPrefab;
+
+        while (x < ancho - 2 && y < alto - 2)
+        {
+            if (Random.value < 0.5f) x++; else y++;
+            mapa[x][ y] = sueloPrefab;
+        }
+
+        mapa[x][y] = salidaPrefab;
+            
+            
+
+    }
 
     void GenerarMapa() {
         for (int x = 0; x < ancho; x++)
@@ -71,8 +88,10 @@ public class MapaManager : MonoBehaviour
 
                 if (mapa[x][y] == paredPrefab)
                 {
+                    if (mapa[x][y].transform.position.x == 0) {
+                        pos = new Vector3((x * 12)+5.5f, 6.5f, y * 12);
+                    }
                     toSpawn = paredPrefab;
-                    pos.y = 6.5f;
                 }
                 else
                 {
