@@ -7,9 +7,14 @@ public class Pistol : Weapon
 
     public override void Fire()
     {
-        if (canFire)
+        /*if (canFire)
         {
             
-        }
+        }*/
+    }
+
+    public override void Reload()
+    {
+        throw new System.NotImplementedException();
     }
 }
