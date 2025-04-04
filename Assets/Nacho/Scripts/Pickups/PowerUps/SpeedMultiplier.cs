@@ -1,13 +1,7 @@
-using System;
 using UnityEngine;
 
-public class WeaponManager : MonoBehaviour
+public class SpeedMultiplier : MonoBehaviour
 {
-    internal void AddWeapon(Weapon weapon)
-    {
-        throw new NotImplementedException();
-    }
-
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

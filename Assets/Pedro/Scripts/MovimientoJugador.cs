@@ -30,7 +30,8 @@ public class MovimientoJugador : MonoBehaviour
     private bool avanzoAtaque;
     public bool conArma;
     private float impulsoGolpe = 2f;
-    
+    private float damageMultiplier = 1f;  
+
     // Variables internas de estado
     private bool estoyAgachado;
     private Animator anim;
@@ -38,6 +39,7 @@ public class MovimientoJugador : MonoBehaviour
     private Rigidbody rb;
     public bool canJump;
     private float initialSpeed;
+    private float speedMultiplier = 1f;
     
     // Método Start: Se ejecuta una vez al inicio
     void Start()
@@ -63,14 +65,13 @@ public class MovimientoJugador : MonoBehaviour
     {    
         if (!atacando)
         {
-            // Movimiento del jugador
             transform.Rotate(0, x * rotationSpeed * Time.deltaTime, 0);
             transform.Translate(0, 0, y * movementSpeed * Time.deltaTime);
         } 
 
         if (avanzoAtaque)
         {
-            rb.linearVelocity = transform.forward * impulsoGolpe;
+            rb.linearVelocity = transform.forward * (impulsoGolpe * damageMultiplier);
         }
     }  
 
@@ -225,5 +226,15 @@ public class MovimientoJugador : MonoBehaviour
             armasCollider[i].enabled = false;
         }
         rightHand.enabled = false;
+    }
+
+    public void SetSpeedMultiplier(float multiplier)
+    {
+        speedMultiplier = multiplier;
+        movementSpeed = initialSpeed * speedMultiplier;
+    }
+    public void SetDamageMultiplier(float multiplier)
+    {
+        damageMultiplier = multiplier;
     }
 }
