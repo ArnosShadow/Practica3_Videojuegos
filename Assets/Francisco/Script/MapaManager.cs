@@ -24,7 +24,7 @@ public class MapaManager : MonoBehaviour
     [Header("Navegador")]
     [SerializeField] private NavMeshSurface navMeshSurface;
 
-
+    private GameObject trampa;
     private GameObject[][] mapa;
     private void Awake()
     {
@@ -63,16 +63,18 @@ public class MapaManager : MonoBehaviour
                 if (mapa[x][y] != sueloPrefab)
                     continue;
 
-                if (Random.value < 0.05f && trampasPrefab.Length > 0)
+                if (Random.value < 0.05f && trampasPrefab.Length > 0 && mapa[x][y] !=trampa && mapa[x][y] != enemyPrefab)
                 {
-                    GameObject trampa = trampasPrefab[Random.Range(0, trampasPrefab.Length)];
+                    trampa = trampasPrefab[Random.Range(0, trampasPrefab.Length)];
                     Instantiate(trampa, new Vector3(x * 12, 0.5f, y * 12), Quaternion.identity);
+                    mapa[x][y] = trampa;
                     continue; 
                 }
 
-                if (Random.value < 0.05f)
+                if (Random.value < 0.05f && mapa[x][y] != trampa && mapa[x][y] != enemyPrefab)
                 {
                     Instantiate(enemyPrefab, new Vector3(x * 12, 0.5f, y * 12), Quaternion.identity);
+                    mapa[x][y] = enemyPrefab;
                 }
             }
         }
@@ -142,10 +144,12 @@ public class MapaManager : MonoBehaviour
                 Vector3 pos = new Vector3(x * 12, 0, y * 12);
                 GameObject toSpawn = null;
 
+                bool esTrampa = trampasPrefab != null && Array.IndexOf(trampasPrefab, mapa[x][y]) >= 0;
+
                 if (mapa[x][y] == paredPrefab)
                 {
                     if (mapa[x][y].transform.position.x == 0) {
-                        pos = new Vector3((x * 12)+5.5f, 6.5f, y * 12);
+                        pos = new Vector3((x * 12) + 5.5f, 6.5f, y * 12);
                     }
                     toSpawn = paredPrefab;
                 }
@@ -153,9 +157,17 @@ public class MapaManager : MonoBehaviour
                 {
                     toSpawn = sueloPrefab;
                 }
-                GameObject instanciado = Instantiate(toSpawn, pos, Quaternion.identity);
 
-                Debug.Log("Instanciado en "+ instanciado.transform.position);
+                
+                if (mapa[x][y] ==   esTrampa) {
+                    Debug.Log("Trampa");
+                    mapa[x][y] = trampa;
+                    toSpawn = trampa;
+                }
+                if (mapa[x][y] != esTrampa) {
+                    GameObject instanciado = Instantiate(toSpawn, pos, Quaternion.identity);
+                    Debug.Log("Instanciado en " + instanciado.transform.position);
+                }
                 if (mapa[x][y] == entradaPrefab)
                     Instantiate(entradaPrefab, pos + Vector3.up * 0.5f, Quaternion.identity, transform);
                 else if (mapa[x][y] == salidaPrefab)

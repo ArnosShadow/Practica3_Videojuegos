@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     //[SerializeField] private InputField altoInput;
     private void Start()
     {
-       // anchoInput.text = GameSettings.Instance.ancho.ToString();
+        //anchoInput.text = GameSettings.Instance.ancho.ToString();
         //altoInput.text = GameSettings.Instance.alto.ToString();
     }
     public void PlayGame()
