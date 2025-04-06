@@ -8,6 +8,7 @@ public class ArcherController : MonoBehaviour
     [SerializeField] public float AttackRange = 10f;
     [SerializeField] public float RetreatDistance = 3f;
     [SerializeField] public float ShootCooldown = 5f;
+    [SerializeField] public float health = 50f;
 
     [SerializeField] GameObject arrowPrefab;
     [SerializeField] Transform arrowSpawnPoint;
@@ -85,6 +86,17 @@ public class ArcherController : MonoBehaviour
         if (NavMesh.SamplePosition(retreatPos, out hit, 2f, NavMesh.AllAreas))
         {
             _agent.SetDestination(hit.position);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        // La arquera muere de un toque.
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            _animator.SetTrigger("Die");
+            _agent.enabled = false; // desactivar el agente de navmesh para que no se mueva al morir
+            Destroy(gameObject, 2f); // destruir el objeto despues de 2 segundos
         }
     }
 }

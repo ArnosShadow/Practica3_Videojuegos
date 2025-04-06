@@ -16,6 +16,8 @@ public class ZombiesController : MonoBehaviour
 
     [SerializeField] float randomZ = UnityEngine.Random.Range(-5f, 5f);
 
+    [SerializeField] float health = 100f;
+
 
     private Animator _animator;
 
@@ -95,7 +97,14 @@ public class ZombiesController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Logica de daño al jugador.
+            health -= 50f;
+
+            if (health <= 0f)
+            {
+                _animator.SetTrigger("Die");
+                _agent.enabled = false; // desactivar el agente de navmesh para que no se mueva al morir
+                Destroy(gameObject, 2f); // destruir el objeto despues de 2 segundos
+            }
         }
     }
 
