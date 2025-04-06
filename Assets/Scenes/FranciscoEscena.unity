@@ -897,6 +897,7 @@ MonoBehaviour:
   - {fileID: 7814768829385764953, guid: 59d8cd6b42064334c8f84940f3eecb69, type: 3}
   - {fileID: 4065452272104529477, guid: 1d1be415e7e42f54e9d88e0c67f2acc9, type: 3}
   - {fileID: 5533196104229302143, guid: b0f8e884240e49e4d8c9e30401092a3e, type: 3}
+  - {fileID: 3592058751678934956, guid: 3f560cac7ab60114aa694654691ba22a, type: 3}
   enemyPrefab: {fileID: 8039961518731041602, guid: db360216242bb824dae05742e44e5657, type: 3}
   salidaPrefab: {fileID: 2528356184676243214, guid: 624ed2c4916a407408a551b436b9dedf, type: 3}
   entradaPrefab: {fileID: 9013724302122160237, guid: d55cdb7c2c18898418898fd6df0d34c8, type: 3}
