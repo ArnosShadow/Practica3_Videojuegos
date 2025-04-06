@@ -891,7 +891,7 @@ MonoBehaviour:
   alto: 20
   ancho: 20
   sueloPrefab: {fileID: 2931137822372785481, guid: bd3c1e11f32601546a78888e2a53e178, type: 3}
-  paredPrefab: {fileID: 521320233157082250, guid: 7a6dcb8991a9f2643845c559e06f09e7, type: 3}
+  paredPrefab: {fileID: 9111101640565415361, guid: 498191b17c698d649b2649220fa423d1, type: 3}
   trampaPrefab: {fileID: 1218716888929419209, guid: 4993fce6da5699a479ef85c33fcef457, type: 3}
   enemyPrefab: {fileID: 8039961518731041602, guid: db360216242bb824dae05742e44e5657, type: 3}
   salidaPrefab: {fileID: 2528356184676243214, guid: 624ed2c4916a407408a551b436b9dedf, type: 3}
