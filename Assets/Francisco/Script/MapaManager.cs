@@ -2,6 +2,7 @@ using System;
 using System.Security.Cryptography;
 using Unity.AI.Navigation;
 using UnityEngine;
+using static UnityEditor.PlayerSettings;
 using Random = UnityEngine.Random;
 
 public class MapaManager : MonoBehaviour
@@ -71,7 +72,13 @@ public class MapaManager : MonoBehaviour
                 if (Random.value < 0.05f && trampasPrefab.Length > 0 && mapa[x][y] !=trampa && mapa[x][y] != enemyPrefab)
                 {
                     trampa = trampasPrefab[Random.Range(0, trampasPrefab.Length)];
-                    Instantiate(trampa, new Vector3(x * 12, 0.5f, y * 12), Quaternion.identity);
+                    Vector3 pos = new Vector3(x * 12, 0.5f, y * 12);
+                    if (trampa == trampasPrefab[2])
+                    {
+                        pos = new Vector3(x * 12, 4.41f, y * 12);
+                    }
+                    Instantiate(trampa, pos , Quaternion.identity);
+
                     mapa[x][y] = trampa;
                     continue; 
                 }
