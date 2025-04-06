@@ -16,13 +16,6 @@ public class PruebaPlayerMarta : MonoBehaviour
     [SerializeField] private float jumpForce;
     [SerializeField] private float gravityExtra;
     
-    [Header("Colliders y Objetos")]
-    [SerializeField] private CapsuleCollider colliderEnPie;
-    [SerializeField] private CapsuleCollider colliderAgachado;
-    [SerializeField] private GameObject head;
-    [SerializeField] private CabezaPersonaje cabezaPersonaje;
-    [SerializeField] private BoxCollider rightHand;
-    [SerializeField] private BoxCollider[] armasCollider;
     
     [Header("Configuración de Ataque")]
     private bool atacando;
@@ -56,7 +49,7 @@ public class PruebaPlayerMarta : MonoBehaviour
         ManejarEntradaMovimiento();
         ManejarSprint();
         ManejarAtaque();
-        ManejarSaltoYAgachado();
+        // ManejarSaltoYAgachado();
     }
 
     // Método FixedUpdate: Se usa para física y movimiento
@@ -123,34 +116,7 @@ public class PruebaPlayerMarta : MonoBehaviour
     /// <summary>
     /// Maneja el salto y el agachado del jugador.
     /// </summary>
-    private void ManejarSaltoYAgachado()
-    {
-        if (canJump)
-        {
-            if (!atacando)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    anim.SetBool("EstoySaltando", true);
-                    rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                }
 
-                if (Input.GetKey(KeyCode.LeftControl))
-                {
-                    AgacharJugador();
-                }
-                else if (cabezaPersonaje.collisionCount <= 0)
-                {
-                    LevantarJugador();
-                }
-            }
-            anim.SetBool("TocarSuelo", true);
-        }
-        else
-        {
-            Falling();
-        }
-    }
 
     /// <summary>
     /// Aplica fuerza adicional para acelerar la caída del jugador.
@@ -162,29 +128,7 @@ public class PruebaPlayerMarta : MonoBehaviour
         anim.SetBool("EstoySaltando", false);
     }
 
-    /// <summary>
-    /// Maneja la lógica de agacharse.
-    /// </summary>
-    private void AgacharJugador()
-    {
-        anim.SetBool("Agachado", true);
-        colliderAgachado.enabled = true;
-        colliderEnPie.enabled = false;
-        head.SetActive(true);
-        estoyAgachado = true;
-    }
-
-    /// <summary>
-    /// Maneja la lógica de levantarse después de agacharse.
-    /// </summary>
-    private void LevantarJugador()
-    {
-        anim.SetBool("Agachado", false);
-        head.SetActive(false);
-        colliderAgachado.enabled = false;
-        colliderEnPie.enabled = true;
-        estoyAgachado = false;
-    }
+   
 
     /// <summary>
     /// Finaliza el ataque del jugador.
@@ -197,35 +141,12 @@ public class PruebaPlayerMarta : MonoBehaviour
     /// <summary>
     /// Inicia el movimiento hacia adelante en un ataque.
     /// </summary>
-    private void AvanzoAtaque()
-    {
-        avanzoAtaque = true;
-
-        for (int i = 0; i < armasCollider.Length; i++)
-        {
-            if (conArma)
-            {
-                armasCollider[i].enabled = true;
-            } else {
-                rightHand.enabled = true;
-            }
-        }
-    }
+   
 
     /// <summary>
     /// Detiene el movimiento hacia adelante en un ataque.
     /// </summary>
-    private void DejoDeAvanzar()
-    {
-        avanzoAtaque = false;
-        rightHand.enabled = false;
-
-        for (int i = 0; i < armasCollider.Length; i++)
-        {
-            armasCollider[i].enabled = false;
-        }
-        rightHand.enabled = false;
-    }
+   
 
     public void SetSpeedMultiplier(float multiplier)
     {
