@@ -4785,6 +4785,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tile Trap 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6528593872245123279, guid: 1d1be415e7e42f54e9d88e0c67f2acc9, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.32
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528593872245123279, guid: 1d1be415e7e42f54e9d88e0c67f2acc9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6528593872245123279, guid: 1d1be415e7e42f54e9d88e0c67f2acc9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.66
+      objectReference: {fileID: 0}
     - target: {fileID: 7275797584551140845, guid: 1d1be415e7e42f54e9d88e0c67f2acc9, type: 3}
       propertyPath: m_LocalPosition.x
       value: -57.1
