@@ -49,7 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   colorIluminado: {r: 1, g: 0, b: 0, a: 0}
   intensity: 10
-  reduccionVelocidad: 0
+  reduccionVelocidad: 10
   reduccionVida: 1
 --- !u!33 &2159554222441484233
 MeshFilter:
