@@ -3,7 +3,52 @@ guid: ca1ded08605f3c44685568bf9f5801e9
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Akai_MAT
+    second: {fileID: 2100000, guid: 404de097fdadae64f97b8c0687032d98, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Body_MAT
+    second: {fileID: 2100000, guid: 27a4d355be55e694f8992747576c0049, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: EyeSpec_MAT
+    second: {fileID: 2100000, guid: 6a515deb508ff1b45ac44387cb55c3ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eyelash_MAT
+    second: {fileID: 2100000, guid: 82bae58406c4de846b135fc5a655052e, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Erika_Archer_Clothes_diffuse
+    second: {fileID: 2800000, guid: 05dab1bd2f5ea6b4f9d17d752fcb0648, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Erika_Archer_Clothes_normal
+    second: {fileID: 2800000, guid: 996887a0afb71834888968fe25c1d05a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FemaleFitA_Body_diffuse
+    second: {fileID: 2800000, guid: 7424bd25486b0ca4491d0a873f7ea95b, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FemaleFitA_StdNM
+    second: {fileID: 2800000, guid: 13328bda2f03b8240877065d959fc209, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: FemaleFitA_eyelash_diffuse
+    second: {fileID: 2800000, guid: 6f124094888c70b41935000a550acd62, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
