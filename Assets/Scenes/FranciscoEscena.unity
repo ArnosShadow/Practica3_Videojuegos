@@ -888,6 +888,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa646a19a003b3745a2e8c6c5ec06a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  contenedor: {fileID: 11400000, guid: 5b1a957b1e162594d8d22f62bb3bfa9d, type: 2}
   alto: 20
   ancho: 20
   sueloPrefab: {fileID: 2931137822372785481, guid: bd3c1e11f32601546a78888e2a53e178, type: 3}
