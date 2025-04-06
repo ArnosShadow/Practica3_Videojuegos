@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ZombiesController: MonoBehaviour
+public class ZombiesController : MonoBehaviour
 {
     [SerializeField] public float DetectionRange = 10f; //rango para detectar al jugador
 
@@ -46,7 +46,7 @@ public class ZombiesController: MonoBehaviour
             _animator.SetTrigger("Punch");
         }
 
-        else if (_distanceToPlayer < DetectionRange) 
+        else if (_distanceToPlayer < DetectionRange)
         {
             //correr hacia el jugador
             _agent.SetDestination(_player.position);
@@ -95,8 +95,7 @@ public class ZombiesController: MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            //aqui puedes añadir logica
-            //adicional
+            // Logica de daÃ±o al jugador.
         }
     }
 
