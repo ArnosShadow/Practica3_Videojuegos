@@ -59,6 +59,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ca1ded08605f3c44685568bf9f5801e9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8518157591847462867}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ca1ded08605f3c44685568bf9f5801e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5198043095831324564}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ca1ded08605f3c44685568bf9f5801e9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -4577554619517926970}
   m_SourcePrefab: {fileID: 100100000, guid: ca1ded08605f3c44685568bf9f5801e9, type: 3}
 --- !u!1 &3791055354751653135 stripped
 GameObject:
@@ -82,4 +88,53 @@ MonoBehaviour:
   RetreatDistance: 3
   ShootCooldown: 5
   arrowPrefab: {fileID: 0}
-  arrowSpawnPoint: {fileID: 0}
+  arrowSpawnPoint: {fileID: 4600242777163354037}
+--- !u!195 &-5198043095831324564
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791055354751653135}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
+--- !u!95 &-4577554619517926970
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3791055354751653135}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 50192ddeb2572534488dfd64536e870f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &4600242777163354037 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ca1ded08605f3c44685568bf9f5801e9, type: 3}
+  m_PrefabInstance: {fileID: 4061649913830549598}
+  m_PrefabAsset: {fileID: 0}

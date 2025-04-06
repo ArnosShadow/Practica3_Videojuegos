@@ -71,14 +71,14 @@ public class MapaManager : MonoBehaviour
                 if (Random.value < 0.05f && trampasPrefab.Length > 0 && mapa[x][y] !=trampa && mapa[x][y] != enemyPrefab)
                 {
                     trampa = trampasPrefab[Random.Range(0, trampasPrefab.Length)];
-                    Instantiate(trampa, new Vector3(x * 12, 0.5f, y * 12), Quaternion.identity);
+                    Instantiate(trampa, new Vector3(x * 12, 0, y * 12), Quaternion.identity);
                     mapa[x][y] = trampa;
                     continue; 
                 }
 
                 if (Random.value < 0.05f && mapa[x][y] != trampa && mapa[x][y] != enemyPrefab)
                 {
-                    Instantiate(enemyPrefab, new Vector3(x * 12, 0.5f, y * 12), Quaternion.identity);
+                    Instantiate(enemyPrefab, new Vector3(x * 12, 0, y * 12), Quaternion.identity);
                     mapa[x][y] = enemyPrefab;
                 }
             }
