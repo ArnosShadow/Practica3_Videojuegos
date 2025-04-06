@@ -16,6 +16,9 @@ public class MapaManager : MonoBehaviour
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject salidaPrefab;
     [SerializeField] private GameObject entradaPrefab;
+    [SerializeField] private GameObject movingWall;
+    [SerializeField] private GameObject sueloInteractivo;
+    [SerializeField] private GameObject tileTrap1;
     [Header("Navegador")]
     [SerializeField] private NavMeshSurface navMeshSurface;
 
@@ -48,8 +51,10 @@ public class MapaManager : MonoBehaviour
         {
             for (int y = 1; y < alto - 1; y++)
             {
+                // if (mapa[x][ y] == sueloPrefab && Random.value < 0.05f)
+                //     Instantiate(tileTrap1, new Vector3(x, 0.5f, y), Quaternion.identity);
                 if (mapa[x][ y] == sueloPrefab && Random.value < 0.05f)
-                    Instantiate(trampaPrefab, new Vector3(x, 0.5f, y), Quaternion.identity);
+                    Instantiate(sueloInteractivo, new Vector3(x, 0.5f, y), Quaternion.identity);
 
                 if (mapa[x][ y] == sueloPrefab && Random.value < 0.05f)
                     Instantiate(enemyPrefab, new Vector3(x, 0.5f, y), Quaternion.identity);

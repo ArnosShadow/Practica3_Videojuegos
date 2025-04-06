@@ -12,12 +12,14 @@ public class SueloInteractivo : MonoBehaviour
 
 
     private Renderer rend;
+    private Collider sueloCollider;
     private Color colorOriginal;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         rend = GetComponent<Renderer>();
+        sueloCollider= GetComponent<Collider>();
         colorOriginal= rend.material.color;
     }
 
@@ -33,6 +35,8 @@ public class SueloInteractivo : MonoBehaviour
         {
             rend.material.SetColor("_EmissionColor", colorIluminado* intensity);
             Rigidbody rbPlayer= collision.gameObject.GetComponent<Rigidbody>();
+
+            sueloCollider.material.dynamicFriction =reduccionVelocidad;
             // MovimientoJugador jugador = collision.gameObject.GetComponent<MovimientoJugador>();
 
             // if(rbPlayer!= null){
