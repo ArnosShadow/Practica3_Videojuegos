@@ -6,6 +6,8 @@ using Random = UnityEngine.Random;
 
 public class MapaManager : MonoBehaviour
 {
+    [Header("Configuración de mapa")]
+    [SerializeField] private Contenedor contenedor;
     [Header("Propiedades inciales")]
     [SerializeField] private int alto = 20;
     [SerializeField] private int ancho = 20;
@@ -31,6 +33,9 @@ public class MapaManager : MonoBehaviour
         mapa = new GameObject[ancho][];
         for (int x = 0; x < ancho; x++)
             mapa[x] = new GameObject[alto];
+
+        alto = contenedor.alto;
+        ancho= contenedor.ancho;
     }
     public MapaManager(GameObject[][] mapa)
     {

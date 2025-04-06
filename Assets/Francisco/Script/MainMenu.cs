@@ -1,27 +1,40 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    // [SerializeField] private InputField anchoInput;
-    //[SerializeField] private InputField altoInput;
+    [Header("Referencia al contenedor")]
+    [SerializeField] private Contenedor contenedor;
+
+    [Header("Campos de entrada")]
+    [SerializeField] private TMP_InputField anchoInput;
+    [SerializeField] private TMP_InputField altoInput;
+
     private void Start()
     {
-        //anchoInput.text = GameSettings.Instance.ancho.ToString();
-        //altoInput.text = GameSettings.Instance.alto.ToString();
+        if (contenedor != null)
+        {
+            anchoInput.text = contenedor.ancho.ToString();
+            altoInput.text = contenedor.alto.ToString();
+        }
+        else
+        {
+            Debug.LogError("No se ha asignado el contenedor en el inspector.");
+        }
     }
-    public void PlayGame()
-    {/*
-        int ancho = int.Parse(anchoInput.text);
-        int alto = int.Parse(altoInput.text);
 
-        GameSettings.Instance.ancho = ancho;
-        GameSettings.Instance.alto = alto;
-       */ 
+    public void PlayGame()
+    {
+        if (contenedor == null) return;
+
+        
+        contenedor.ancho = int.Parse(anchoInput.text);
+        contenedor.alto = int.Parse(altoInput.text);
+
         SceneManager.LoadScene("CargarEscena");
     }
-
 
     public void QuitGame()
     {
