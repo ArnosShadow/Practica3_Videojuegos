@@ -41,10 +41,15 @@ public class RollingBall : Tramp
         if (collision.transform.IsChildOf(pared.transform)){
         // if(collision.gameObject.name=="BloqueParedEntero"){
             // MoveBall();
-            Debug.Log("Colisión con un enemigo vivo!");
             positionObjectivo= objetivo.position;
             // transform.position = Vector3.MoveTowards(transform.position, objetivo.position, speed * Time.deltaTime);
 
+        }
+
+        if(collision.gameObject.CompareTag("palyer")){
+            GameObject player = collision.gameObject;
+
+            // player.MuerteInstantanea();
         }
         
     }

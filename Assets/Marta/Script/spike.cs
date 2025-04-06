@@ -9,6 +9,9 @@ public class spike : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Rigidbody rb= collision.gameObject.GetComponent<Rigidbody>();
+            GameObject player = collision.gameObject;
+
+            // player.MuerteInstantanea();
             if (rb != null)
             {
                 Debug.Log("Muerto");

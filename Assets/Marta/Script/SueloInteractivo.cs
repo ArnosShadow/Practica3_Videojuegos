@@ -34,7 +34,9 @@ public class SueloInteractivo : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             rend.material.SetColor("_EmissionColor", colorIluminado* intensity);
-            Rigidbody rbPlayer= collision.gameObject.GetComponent<Rigidbody>();
+            GameObject player = collision.gameObject;
+
+            // player.HacerDanio(reduccionVida);
 
             // sueloCollider.material.dynamicFriction =reduccionVelocidad;
             // MovimientoJugador jugador = collision.gameObject.GetComponent<MovimientoJugador>();
@@ -61,7 +63,7 @@ public class SueloInteractivo : MonoBehaviour
     void OnCollisionExit(Collision collision){
         if (collision.gameObject.CompareTag("Player")) {
             rend.material.SetColor("_EmissionColor", colorOriginal);
-            Rigidbody rbPlayer= collision.gameObject.GetComponent<Rigidbody>();
+            // Rigidbody rbPlayer= collision.gameObject.GetComponent<Rigidbody>();
             // PruebaPlayerMarta player=collision.gameObject.GetComponent<PruebaPlayerMarta>();
             // player.MovementSpeed=  player.MovementSpeed/reduccionVelocidad;
             // player.RotationSpeed=  player.RotationSpeed/reduccionVelocidad;

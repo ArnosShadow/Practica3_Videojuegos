@@ -32,4 +32,15 @@ public class MoveWall : Tramp
     public override void Activar(){
         isActivate= true;
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+           
+            GameObject player = collision.gameObject;
+
+            // player.MuerteInstantanea();
+        }
+    }
 }
