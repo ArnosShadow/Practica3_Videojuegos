@@ -12,13 +12,15 @@ public class MapaManager : MonoBehaviour
     [Header("Bloques")]
     [SerializeField] private GameObject sueloPrefab;
     [SerializeField] private GameObject paredPrefab;
-    [SerializeField] private GameObject trampaPrefab;
+    [SerializeField] private GameObject[] trampasPrefab;
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private GameObject salidaPrefab;
     [SerializeField] private GameObject entradaPrefab;
+    /*
     [SerializeField] private GameObject movingWall;
     [SerializeField] private GameObject sueloInteractivo;
     [SerializeField] private GameObject tileTrap1;
+    */
     [Header("Navegador")]
     [SerializeField] private NavMeshSurface navMeshSurface;
 
@@ -44,23 +46,38 @@ public class MapaManager : MonoBehaviour
         InstanciarMapa();
         navMeshSurface.BuildNavMesh();
     }
-
     private void GenerarTrampasYEnemigos()
     {
+        Vector2Int entrada = new Vector2Int(1, 1);
+        Vector2Int salida = new Vector2Int(ancho - 2, alto - 2);
+
         for (int x = 1; x < ancho - 1; x++)
         {
             for (int y = 1; y < alto - 1; y++)
             {
-                // if (mapa[x][ y] == sueloPrefab && Random.value < 0.05f)
-                //     Instantiate(tileTrap1, new Vector3(x, 0.5f, y), Quaternion.identity);
-                if (mapa[x][ y] == sueloPrefab && Random.value < 0.05f)
-                    Instantiate(sueloInteractivo, new Vector3(x, 0.5f, y), Quaternion.identity);
+                Vector2Int actual = new Vector2Int(x, y);
 
-                if (mapa[x][ y] == sueloPrefab && Random.value < 0.05f)
-                    Instantiate(enemyPrefab, new Vector3(x, 0.5f, y), Quaternion.identity);
+                if (Vector2Int.Distance(actual, entrada) < 3f || Vector2Int.Distance(actual, salida) < 3f)
+                    continue;
+
+                if (mapa[x][y] != sueloPrefab)
+                    continue;
+
+                if (Random.value < 0.05f && trampasPrefab.Length > 0)
+                {
+                    GameObject trampa = trampasPrefab[Random.Range(0, trampasPrefab.Length)];
+                    Instantiate(trampa, new Vector3(x * 12, 0.5f, y * 12), Quaternion.identity);
+                    continue; 
+                }
+
+                if (Random.value < 0.05f)
+                {
+                    Instantiate(enemyPrefab, new Vector3(x * 12, 0.5f, y * 12), Quaternion.identity);
+                }
             }
         }
     }
+
 
     private void GenerarZonasSecundarias()
     {
