@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Golpe
   - Enemigo
+  - SpawnPoint
   layers:
   - Default
   - TransparentFX

@@ -868,6 +868,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2024253205}
   - component: {fileID: 2024253204}
+  - component: {fileID: 2024253207}
   - component: {fileID: 2024253206}
   m_Layer: 0
   m_Name: MapaManager
@@ -949,6 +950,26 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
+--- !u!114 &2024253207
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024253203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17877c0804fb2fc42b8ddce615c257a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomSpawn: 0
+  spawnPoints:
+  - {fileID: 0}
+  spawnBounds:
+  - {x: 0, y: 0, z: 0}
+  - {x: 0, y: 0, z: 0}
+  enemyPrefab: {fileID: 3791055354751653135, guid: 88d84c004f71e854e89bed7495a85dd1, type: 3}
+  spawnInterval: 20
 --- !u!1 &2118371619
 GameObject:
   m_ObjectHideFlags: 0

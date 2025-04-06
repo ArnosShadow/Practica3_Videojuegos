@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Controla el movimiento del jugador, incluyendo caminar, correr, saltar y agacharse.
@@ -236,5 +237,15 @@ public class MovimientoJugador : MonoBehaviour
     public void SetDamageMultiplier(float multiplier)
     {
         damageMultiplier = multiplier;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+
+        if (collision.gameObject.CompareTag("Finish"))
+        {
+
+            SceneManager.LoadScene("CargarEscena");
+        }
     }
 }
