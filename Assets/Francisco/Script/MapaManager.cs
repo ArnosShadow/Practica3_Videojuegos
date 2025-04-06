@@ -145,4 +145,6 @@ public class MapaManager : MonoBehaviour
                     Instantiate(salidaPrefab, pos + Vector3.up * 0.5f, Quaternion.identity, transform);
             }
     }
+
+
 }

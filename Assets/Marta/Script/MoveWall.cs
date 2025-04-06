@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MoveWall : MonoBehaviour
+public class MoveWall : Tramp
 {
      [SerializeField] float moveSpeed;
 
@@ -11,7 +11,7 @@ public class MoveWall : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        isActivate=true;
+        isActivate=false;
         leftWall= transform.Find("ParedMovilLeft");
         rightWall= transform.Find("ParedMovilRight");
 
@@ -27,5 +27,9 @@ public class MoveWall : MonoBehaviour
             leftWall.position=Vector3.MoveTowards(leftWall.position, rightWall.position, moveSpeed*Time.deltaTime );
             rightWall.position=Vector3.MoveTowards(rightWall.position, leftWall.position, moveSpeed*Time.deltaTime );
         }
+    }
+
+    public override void Activar(){
+        isActivate= true;
     }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RollingBall : MonoBehaviour
+public class RollingBall : Tramp
 {
     [SerializeField] private Transform objetivo;
     [SerializeField] private GameObject pared;
@@ -12,7 +12,9 @@ public class RollingBall : MonoBehaviour
     {
         rb=GetComponent<Rigidbody>();
         // MoveBall();
-        positionObjectivo= objetivo.position;
+        // positionObjectivo= objetivo.position;
+        rb.isKinematic = true;
+        rb.useGravity = false;
 
     }
 
@@ -45,5 +47,11 @@ public class RollingBall : MonoBehaviour
 
         }
         
+    }
+
+    public override void Activar(){
+        positionObjectivo= objetivo.position;
+        rb.isKinematic = false;
+        rb.useGravity = true;
     }
 }

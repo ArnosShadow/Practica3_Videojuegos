@@ -36,7 +36,7 @@ public class SueloInteractivo : MonoBehaviour
             rend.material.SetColor("_EmissionColor", colorIluminado* intensity);
             Rigidbody rbPlayer= collision.gameObject.GetComponent<Rigidbody>();
 
-            sueloCollider.material.dynamicFriction =reduccionVelocidad;
+            // sueloCollider.material.dynamicFriction =reduccionVelocidad;
             // MovimientoJugador jugador = collision.gameObject.GetComponent<MovimientoJugador>();
 
             // if(rbPlayer!= null){
